@@ -1,2 +1,1 @@
-# model_danbibibi
-danbibi's model 
+# Shopping Review Sentiment Analysis
