@@ -40,8 +40,6 @@ def predict(predict_sentence):
 
     another_test = BERTDataset(dataset_another, 0, 1, tok, max_len, True, False)
     test_loader = torch.utils.data.DataLoader(another_test, batch_size=batch_size, num_workers=0)
-    
-    model.eval()
 
     for batch_id, (token_ids, valid_length, segment_ids, label) in enumerate(test_loader):
         token_ids = token_ids.long().to(device)
