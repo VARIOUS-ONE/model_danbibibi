@@ -17,6 +17,5 @@ cd sentimentAnalysis
 ## Run
  
 ```shell
-python predict.py
-#python3 predict.py
+python predict.py # or # python3 predict.py
 ```
