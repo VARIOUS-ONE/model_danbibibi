@@ -24,7 +24,7 @@ device = torch.device('cpu')
 bertmodel, vocab = get_pytorch_kobert_model()
 
 ## 학습 모델 불러오기
-PATH = './model/naver_shopping.pt'
+PATH = './model/model_naver_11st.pt'
 model = BERTClassifier(bert=bertmodel)
 model.load_state_dict(torch.load(PATH, map_location=device))
 model.eval()
