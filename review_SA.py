@@ -9,7 +9,6 @@ from tqdm import tqdm, tqdm_notebook
 
 from BERTDataset import BERTDataset
 from model.BERTClassifier import BERTClassifier
-from review_SA import review_SA
 
 from kobert.utils import get_tokenizer
 from kobert.pytorch_kobert import get_pytorch_kobert_model
@@ -34,10 +33,28 @@ model.eval()
 tokenizer = get_tokenizer()
 tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
 
-while True:
-    sentence = input("긍부정을 판단할 리뷰를 입력해주세요 : ")
-    if sentence == "0":
-      print(">> 긍부정 판단을 종료합니다!\n")
-      break
-    print(review_SA.predict(sentence))
-    print("\n")
+
+class review_SA():
+
+    def predict(predict_sentence):
+
+        data = [predict_sentence, 0]
+        dataset_another = [data]
+
+        another_test = BERTDataset(dataset_another, 0, 1, tok, max_len, True, False)
+        test_loader = torch.utils.data.DataLoader(another_test, batch_size=batch_size, num_workers=0)
+
+        for batch_id, (token_ids, valid_length, segment_ids, label) in enumerate(test_loader):
+            token_ids = token_ids.long().to(device)
+            segment_ids = segment_ids.long().to(device)
+
+            valid_length= valid_length
+            label = label.long().to(device)
+
+            out = model(token_ids, valid_length, segment_ids)
+            
+            for i in out:
+                logits=i
+                logits = logits.detach().cpu().numpy()
+
+                return np.argmax(logits)
