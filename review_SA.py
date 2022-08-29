@@ -1,11 +1,6 @@
 import torch
-from torch import nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
 import gluonnlp as nlp
 import numpy as np
-from tqdm import tqdm, tqdm_notebook
 
 from BERTDataset import BERTDataset
 from model.BERTClassifier import BERTClassifier
