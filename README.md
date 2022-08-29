@@ -7,6 +7,7 @@
 ```shell
 git clone https://github.com/VARIOUS-ONE/sentimentAnalysis.git
 cd sentimentAnalysis
+git lfs pull
 ```
 
 ## install
