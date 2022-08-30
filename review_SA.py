@@ -2,8 +2,8 @@ import torch
 import gluonnlp as nlp
 import numpy as np
 
-from BERTDataset import BERTDataset
-from model.BERTClassifier import BERTClassifier
+from .BERTDataset import BERTDataset
+from .model.BERTClassifier import BERTClassifier
 
 from kobert.utils import get_tokenizer
 from kobert.pytorch_kobert import get_pytorch_kobert_model
@@ -19,7 +19,7 @@ device = torch.device('cpu')
 bertmodel, vocab = get_pytorch_kobert_model()
 
 ## 학습 모델 불러오기
-PATH = './model/model_naver_11st.pt'
+PATH = './base/views/sentimentAnalysis/model/model_naver_11st.pt'
 model = BERTClassifier(bert=bertmodel)
 model.load_state_dict(torch.load(PATH, map_location=device))
 model.eval()
